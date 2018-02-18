@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- default values for db connection -->
+	<agg_dbstring>jdbc:mysql://localhost:3306/aggregate</agg_dbstring>
+	<agg_dbuser>root</agg_dbuser>
+	<agg_dbpass>roya6711</agg_dbpass>
+	
+	<um2_dbstring>jdbc:mysql://localhost:3306/um2</um2_dbstring>
+	<um2_dbuser>root</um2_dbuser>
+	<um2_dbpass>roya6711</um2_dbpass>
+		
+</configuration>
