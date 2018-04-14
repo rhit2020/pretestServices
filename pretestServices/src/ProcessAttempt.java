@@ -49,6 +49,8 @@ public class ProcessAttempt extends HttpServlet {
 		String cid = request.getParameter("cid"); // course id
 		String prevAttempt = request.getParameter("prevAttempt"); // name of the previous attempt
 		String event = request.getParameter("event"); // event 
+		String updatesm = request.getParameter("updatesm"); // updatesm 
+
 		/*---------------------------------------------------------
 		 * Getting Data that we need for computation of student progress
 		 * --------------------------------------------------------- */			
@@ -69,11 +71,13 @@ public class ProcessAttempt extends HttpServlet {
 		} 
 		Double result = getPrevAttemptResult(usr, grp, prevAttempt);
 		//if the prev result is not null, send an asynchronous call to update BN beliefs
-		if (result != null && contents != null && contents.isEmpty() == false) {
+		boolean update = true;
+		if (updatesm != null)
+			update = (updatesm.equals("no") == false);
+		if (update && result != null && contents != null && contents.isEmpty() == false) {
 			String params = createParamJSON(usr, grp, prevAttempt, result, contents, event);
 			HttpAsyncClientInterface.getInstance().sendHttpAsynchPostRequest(params);
 		}
-
 		
 		//return the response to the user
 		response.setContentType("application/json");
